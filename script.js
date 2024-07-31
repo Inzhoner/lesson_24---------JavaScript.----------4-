@@ -1,97 +1,80 @@
 //+ Задача №1
-//- Отримати в константу елемент <body>.
-
-/// Варіант 1
-// const body = document.body;
-// console.log(body);
-//// Отримуємо елемент <body> за допомогою __document.body__
-
-/// Варіант 2
-// const { body } = document;
-// console.log(body);
-//// Використовуємо деструктуризацію об'єкта.
-
-/// Варіант 2.1
-////Можливо отримати кілька властивостей з document. Наприклад:
-// const { body, head, documentElement } = document;
-// console.log(body);
-
-//-================================================================
-
-//+ Задача №2
-//- Написати функцію, яка додає в <body> список <ul> з певною кількістю <li> (кількість має передаватись як параметр функції, також мати значення за замовченням).
-
-// const { body } = document;
-
-// function addListToBody(itemCount = 3) {
-//     const ul = document.createElement('ul');
-//     for (let i = 1; i <= itemCount; i++) {
-//         const li = document.createElement('li');
-//         li.textContent = `Item ${i}`;
-//         ul.appendChild(li);
-//     }
-//     body.appendChild(ul);
-//     console.log(`Added ${itemCount} list items to the body.`);
-// }
-
-//// Виклик функції зі значенням за замовченням
-// addListToBody();
-
-//// Виклик функції з заданою кількістю елементів
-// addListToBody(10);
-
-//-================================================================
-
-//+ Задача №3
-//- Додати до елементу <body> клас .loaded. Потім перевірити чи є клас .loaded у елемента <body> і, якщо є, додати стиль кольору тексту зелений.
-
-const { body } = document;
-
-body.classList.add('loaded');
-
-if (body.classList.contains('loaded')) {
-    body.style.color = 'green';
-    body.style.fontSize = '30px';
-}
-
-//-================================================================
-
-//+ Задача №4
-//- Дано в html: три елементи з класом .item. Треба отримати ці елементи в константу, кожному додати клас .active, та перезаписати контент всередині кожного елемента на "Елемент №(тут порядковий номер елементу починаючи з 1)".
-
-const items = Array.from(document.querySelectorAll('.item'));
-
-items.forEach((item, index) => {
-    item.classList.add('active');
-    item.textContent = `Елемент №${index + 1}`;
+//- Дано в html: три елементи з класом .item. При кліку на кожен з елементів додати клас .active, при повторному кліку прибрати клас
+document.querySelectorAll('.item').forEach((item) => {
+    item.addEventListener('click', () => {
+        item.classList.toggle('active');
+        console.log(
+            `${item.textContent} class toggled: ${item.classList.contains(
+                'active'
+            )}`
+        );
+    });
 });
 
 //-================================================================
 
-//+ Задача №5
-//- Дано в html: текст, далі кнопка з класом .button. Треба прокрутити скрол сторінки до кнопки.
+//+ Задача №2
+//- Дано в CSS/SCSS: <body> прозорий. При повному завантаженню сторінки додати клас до <body>, який прибирає прозорість.
 
-const button = document.querySelector('.button');
-
-// Прокручуємо до кнопки через 2 секунди після завантаження сторінки
-setTimeout(() => {
-    button.scrollIntoView({ behavior: 'smooth' });
-}, 2000);
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+    console.log('Сторінка завантажена та class "loaded" додано до body.');
+});
 
 //-================================================================
 
-//+ Задача №6
-//- Дано в html: посилання з класом .link. Треба додати до посилання дата атрибут зі значенням 100. Поім отримати значення атрибуту, та, якщо значення менше 200 пофарбувати колір тексту посилання в червоний.
-// Знаходимо елемент з класом .link
-const link = document.querySelector('.link');
+//+ Задача №3
+//- Дано в HTML: <block-1>, <block-2>, <block-3>. При наведенні курсору на <block-1> змінювати колір фону у <block-3>. Коли курсор йде з <block-1>, повертати початковий фон для <block-3>.
 
-// Додаємо атрибут data-date зі значенням 100
-link.setAttribute('data-date', 100);
+document.addEventListener('DOMContentLoaded', () => {
+    const block1 = document.getElementById('block-1');
+    const block3 = document.getElementById('block-3');
 
-// Отримуємо значення атрибуту
-const dataDate = link.getAttribute('data-date');
+    block1.addEventListener('mouseenter', () => {
+        block3.style.backgroundColor = 'yellow';
+        console.log('При наведенні курсору на  Block 1: змінюється колір Block 3 на yellow');
+    });
 
-// Перевіряємо значення і змінюємо колір якщо виконується умова
-if (dataDate < 200) {
-    link.style.color = 'red';
-}
+    block1.addEventListener('mouseleave', () => {
+        block3.style.backgroundColor = 'coral';
+        console.log('Курсор йде з Block 1: повертається колір Block 3 до coral');
+    });
+});
+
+//-================================================================
+
+//+ Задача №4
+//- Дано в html: текст, елемент з класом .item, текст. Так, що елемент з класом .item за межами в'юпорта. Створити функцію яка будує інтервал який буде змінювати контент в елементі .item виводячи цифру яка збільшується на одиницю: 1 2 3 ... і т.д. Затримка між зміною числа, та до якого числа має працювати інтервал має задаватись в дата атрибутах елемента .item. Функція має запускатись коли ми доскролюємо до елементу .item (його видно), і не запускатись повторно.
+
+document.addEventListener('DOMContentLoaded', () => {
+    const items = document.querySelector('.items');
+    let observer;
+
+    function startCounting() {
+        const delay = parseInt(items.getAttribute('data-delay'), 10) || 1000;
+        const max = parseInt(items.getAttribute('data-max'), 10) || 10;
+        let count = 0;
+
+        const intervalId = setInterval(() => {
+            count += 1;
+            items.textContent = count;
+            console.log(count);
+
+            if (count >= max) {
+                clearInterval(intervalId);
+            }
+        }, delay);
+    }
+
+    function onVisibilityChange(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                startCounting();
+                observer.disconnect(); // Disconnect observer after starting the count
+            }
+        });
+    }
+
+    observer = new IntersectionObserver(onVisibilityChange);
+    observer.observe(items);
+});

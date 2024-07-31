@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок №24 (Основи JavaScript. Частина №4)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Урок №24 (Основи JavaScript. Частина №4)</h1>
+    <!--+Задача №1  -->
+    <h2 class="title">Задача №1</h2>
+    <p class="task-conditions">
+        Дано в html: три елементи з класом .item. При кліку на кожен з елементів додати клас .active, при повторному кліку прибрати клас
+    </p>
+    <div class="item">Item 1</div>
+    <div class="item">Item 2</div>
+    <div class="item">Item 3</div>
+
+    <!--+Задача №2  -->
+    <h2 class="title">Задача №2</h2>
+    <p class="task-conditions">
+        Дано в CSS/SCSS:
+
+        <body> прозорий. При повному завантаженню сторінки додати клас до
+
+            <body>, який прибирає прозорість.
+    </p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae nemo exercitationem et harum aperiam amet dolor dolorum fuga, iste velit ut inventore laboriosam, earum itaque. Dolor facilis pariatur quae ipsum odit.</p>
+    <p>Nulla accusamus recusandae blanditiis sapiente iusto assumenda mollitia iste? Veniam incidunt cum eligendi minus alias, accusantium fuga, distinctio ab voluptatum optio amet suscipit dolorem animi quaerat et corporis. Doloremque, odio.</p>
+    <button onclick="location.reload()">Reload</button>
+
+    <!--+Задача №3  -->
+    <h2 class="title">Задача №3</h2>
+    <p class="task-conditions">
+        Дано в HTML: блоки block-1, block-2, block-3. При наведенні курсору на <block-1> змінювати колір фону у <block-3>. Коли курсор йде з <block-1>, повертати початковий фон для <block-3>.
+    </p>
+    <div class="block" id="block-1">Block 1</div>
+    <div class="block" id="block-2">Block 2</div>
+    <div class="block" id="block-3">Block 3</div>
+
+    <!--+Задача №4  -->
+    <h2 class="title">Задача №4</h2>
+    <p class="task-conditions">
+        Дано в html: текст, елемент з класом .item, текст. Так, що елемент з класом .item за межами в'юпорта. Створити функцію яка будує інтервал який буде змінювати контент в елементі .item виводячи цифру яка збільшується на одиницю: 1 2 3 ... і т.д. Затримка між зміною числа, та до якого числа має працювати інтервал має задаватись в дата атрибутах елемента .item. Функція має запускатись коли ми доскролюємо до елементу .item (його видно), і не запускатись повторно.
+    </p>
+    <div class="container">
+        <p style="margin-bottom: 25px;">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam praesentium ex omnis nesciunt voluptatibus tenetur ipsam corporis eos vero, commodi recusandae facilis saepe inventore amet ratione quam? Quis, nobis iste.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam praesentium ex omnis nesciunt voluptatibus tenetur ipsam corporis eos vero, commodi recusandae facilis saepe inventore amet ratione quam? Quis, nobis iste.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam praesentium ex omnis nesciunt voluptatibus tenetur ipsam corporis eos vero, commodi recusandae facilis saepe inventore amet ratione quam? Quis, nobis iste.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam praesentium ex omnis nesciunt voluptatibus tenetur ipsam corporis eos vero, commodi recusandae facilis saepe inventore amet ratione quam? Quis, nobis iste.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam praesentium ex omnis nesciunt voluptatibus tenetur ipsam corporis eos vero, commodi recusandae facilis saepe inventore amet ratione quam? Quis, nobis iste.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam praesentium ex omnis nesciunt voluptatibus tenetur ipsam corporis eos vero, commodi recusandae facilis saepe inventore amet ratione quam? Quis, nobis iste.
+        </p>
+        <!-- <div class="spacer">Scroll down to see the item...</div> -->
+        <div class="items" data-delay="1000" data-max="10"></div>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam praesentium ex omnis nesciunt voluptatibus tenetur ipsam corporis eos vero, commodi recusandae facilis saepe inventore amet ratione quam? Quis, nobis iste.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam praesentium ex omnis nesciunt voluptatibus tenetur ipsam corporis eos vero, commodi recusandae facilis saepe inventore amet ratione quam? Quis, nobis iste.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam praesentium ex omnis nesciunt voluptatibus tenetur ipsam corporis eos vero, commodi recusandae facilis saepe inventore amet ratione quam? Quis, nobis iste.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam praesentium ex omnis nesciunt voluptatibus tenetur ipsam corporis eos vero, commodi recusandae facilis saepe inventore amet ratione quam? Quis, nobis iste.
+        </p>       
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
