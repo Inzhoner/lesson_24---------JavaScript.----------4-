@@ -32,12 +32,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     block1.addEventListener('mouseenter', () => {
         block3.style.backgroundColor = 'yellow';
-        console.log('При наведенні курсору на  Block 1: змінюється колір Block 3 на yellow');
+        console.log(
+            'При наведенні курсору на  Block 1: змінюється колір Block 3 на yellow'
+        );
     });
 
     block1.addEventListener('mouseleave', () => {
         block3.style.backgroundColor = 'coral';
-        console.log('Курсор йде з Block 1: повертається колір Block 3 до coral');
+        console.log(
+            'Курсор йде з Block 1: повертається колір Block 3 до coral'
+        );
     });
 });
 
@@ -46,10 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
 //+ Задача №4
 //- Дано в html: текст, елемент з класом .item, текст. Так, що елемент з класом .item за межами в'юпорта. Створити функцію яка будує інтервал який буде змінювати контент в елементі .item виводячи цифру яка збільшується на одиницю: 1 2 3 ... і т.д. Затримка між зміною числа, та до якого числа має працювати інтервал має задаватись в дата атрибутах елемента .item. Функція має запускатись коли ми доскролюємо до елементу .item (його видно), і не запускатись повторно.
 
+// Додаємо обробник події, який виконується після повного завантаження сторінки
 document.addEventListener('DOMContentLoaded', () => {
+    // Отримуємо елемент з класом .items
     const items = document.querySelector('.items');
+    // Ця змінна буде використовуватися для створення об'єкта IntersectionObserver, який стежить за тим, чи елемент видимий на екрані.
     let observer;
-
+    //функція, яка запускає сам лічильник.
     function startCounting() {
         const delay = parseInt(items.getAttribute('data-delay'), 10) || 1000;
         const max = parseInt(items.getAttribute('data-max'), 10) || 10;
@@ -67,10 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function onVisibilityChange(entries) {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 startCounting();
-                observer.disconnect(); // Disconnect observer after starting the count
+                observer.disconnect();
             }
         });
     }
